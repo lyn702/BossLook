@@ -89,59 +89,36 @@
             margin-left: 10px;
         }
         .tongdao {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             width: 80%;
             margin: 1rem auto;
             padding: .5rem 0;
         }
-        .firstline {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 2.5rem 0;
-            /*margin: 1rem auto;
-            padding: .5rem 0;*/
-        }
-        .secondline {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 3.5rem 0;
-        }
         .fl-1 {
-            width: 20%;
+            width: 200px;
+            padding: 40px;
         }
         .fl-1-1 {
             border-top: 2px solid #FF0000;
             border-left: 2px solid #FF0000;
             border-right: 2px solid #FF0000;
             border-bottom: 2px solid #FF0000;
-            border-radius: 100%;
+            height: 200px;
+            border-radius: 50%;
+
+            background: url(image/u251.png) no-repeat center;
+            background-position: 0px 80px;
+            background-size: contain;
         }
-        .fl-2 {
-            width: 20%;
-        }
-        .fl-2-1 {
-            border-top: 2px solid #FF0000;
-            border-left: 2px solid #FF0000;
-            border-right: 2px solid #FF0000;
-            border-bottom: 2px solid #FF0000;
-            border-radius: 100%;
-        }
-        .fl-3 {
-            width: 20%;
-        }
-        .fl-3-1 {
-            border-top: 2px solid #FF0000;
-            border-left: 2px solid #FF0000;
-            border-right: 2px solid #FF0000;
-            border-bottom: 2px solid #FF0000;
-            border-radius: 100%;
+        .time {
+            margin-top: 5%;
         }
         .qian {
             /*background: red;*/
-            margin-top: 55%;
+            margin-top: 50%;
+            color: #FFFFFF;
         }
         .xm {
             margin-top: 10px;
@@ -168,63 +145,20 @@
                 </div>
             </div>
             <div class="tongdao">
-                <div class="firstline">
-                    <div class="fl-1">
-                        <div class="fl-1-1">
-                            <div class="time">时间</div>
-                            <div class="qian">金额</div>
-                        </div>
-                        <div class="xm">碰碰车</div>
-                    </div>
 
-                    <!-- <div class="fl-2">
-                        <div class="fl-2-1">
-                            <div class="time">时间</div>
-                            <div class="qian">金额</div>
-                        </div>
-                        <div class="xm">碰碰车</div>
-                    </div> -->
-
-                    <div class="fl-3">
-                        <div class="fl-3-1">
-                            <div class="time">时间</div>
-                            <div class="qian">金额</div>
-                        </div>
-                        <div class="xm">碰碰车</div>
-                    </div>
-                </div>
-                <div class="secondline">
-                    <div class="fl-1">
-                        <div class="fl-1-1">
-                            <div class="time">时间</div>
-                            <div class="qian">金额</div>
-                        </div>
-                        <div class="xm">碰碰车</div>
-                    </div>
-
-                    <!-- <div class="fl-2">
-                        <div class="fl-2-1">
-                            <div class="time">时间</div>
-                            <div class="qian">金额</div>
-                        </div>
-                        <div class="xm">碰碰车</div>
-                    </div> -->
-
-                    <div class="fl-3">
-                        <div class="fl-3-1">
-                            <div class="time">时间</div>
-                            <div class="qian">金额</div>
-                        </div>
-                        <div class="xm">碰碰车</div>
-                    </div>
-                </div>
             </div>
         </div>
     </body>
     <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
     <script>
         let log = console.log.bind(console)
-        log('开始')
+        const LYN = {}
+        // 加载页面显示模块
+        // let List = {
+        //     {
+        //
+        //     }
+        // }
         // 获取时间
         let time = function(z) {
             if (z === undefined) { z = new Date() }
@@ -248,7 +182,50 @@
         let date = time()
         let timestart = time() + ' 00:00:00'
         let timeend = time() + ' 23:59:59'
-        log(timestart,timeend)
+        // 获得小时数
+        let hour = function(z) {
+            if (z === undefined) { z = new Date() }
+            let x = z.toString()
+            // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saterday']
+            let zh     = '天一二三四五六'
+            let Year   = x.slice(11,15)
+            let Month  = z.getMonth() + 1
+            let Day    = x.slice(8,10)
+            let Hour   = x.slice(16,18)
+            let Minute = x.slice(19,21)
+            let Second = x.slice(22,24)
+            let Week   = zh[z.getDay()]
+            if (String(Month).length === 1) {
+                Month = '0' + Month
+            }
+            // log(Year,Month,Da)
+            return `${Hour}`
+        }
+        let xiaoshi = hour()
+        // log(xiaoshi)
+        // 获得分钟数
+        let minute = function(z) {
+            if (z === undefined) { z = new Date() }
+            let x = z.toString()
+            // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saterday']
+            let zh     = '天一二三四五六'
+            let Year   = x.slice(11,15)
+            let Month  = z.getMonth() + 1
+            let Day    = x.slice(8,10)
+            let Hour   = x.slice(16,18)
+            let Minute = x.slice(19,21)
+            let Second = x.slice(22,24)
+            let Week   = zh[z.getDay()]
+            if (String(Month).length === 1) {
+                Month = '0' + Month
+            }
+            // log(Year,Month,Da)
+            return `${Minute}`
+        }
+        let fenzhong = minute()
+        // log(fenzhong)
+        let shijian = Number(xiaoshi * 60 ) + Number(fenzhong)
+        log(shijian)
 // 去空格
 String.prototype.html = function() {
     let html = this.slice(this.indexOf('<'))
@@ -269,19 +246,50 @@ let scene = function () {
         method: 'POST',
         success: function(res) {
             var data = JSON.parse(res)
-            // log('景区ID',data)
-            let temp = data.list
-            // log(temp)
-            if (temp.length < 1) {
-                alert('当前无绑定的景区')
-            }
+            log('景区ID',data)
+            LYN['scene_id'] = 1
+            // let temp = data.list
+            // // log(temp)
+            // if (temp.length < 1) {
+            //     alert('当前无绑定的景区')
+            // }
         }
     })
     $.ajax(request)
 }
 scene()
 
-// 获取所有通道ID
+// 通过时间段统计数据
+let shuju = function (channel_id, e) {
+    let promise = new Promise(function(resolve, reject) {
+        let request = ({
+            url: "http://120.79.12.95/istatistics/todayAccount",
+            data:
+            {
+                "device": 'H5_Web',
+                "appname": 'scene_report',
+                "date": 'date',
+                "channel_id": channel_id,
+                "scene_id": LYN['scene_id'],
+                // "time_start": timestart,
+                // "time_end": timeend
+            },
+            header: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            success: function(res) {
+                var data = JSON.parse(res)
+                resolve(data)
+            }
+        })
+        $.ajax(request)
+    })
+    return promise
+}
+
+
+// 获取所有通道ID修改页面显示
 let channels = function () {
     let request = ({
         url: "http://120.79.12.95/cmd/channels_of_scene",
@@ -300,112 +308,38 @@ let channels = function () {
             let data = JSON.parse(res)
             log('通道ID',data)
             let temp = data.list
+            LYN.html = ''
+            let arr = temp.slice(0 , 4)
             log(temp)
+            // for (let e of arr) {
+            for(let i = 0; i < arr.length; i++) {
+                let e = arr[i]
+                shuju(e.id, e).then(function(res) {
+                    // 金额
+                    if (res.result === 1) {
+                        let money = res.statistics.used_coming_count
+                        let t = `
+                        <div class="fl-1" data-id="${e.id}">
+                            <div class="fl-1-1">
+                                <div class="time">${shijian}min</div>
+                                <div class="qian">${money}</div>
+                        </div>
+                        <div class="xm">${e.name}</div>
+                        </div>`
+                        // log(LYN.html , t)
+                        LYN.html = LYN.html + t
+                        if (i === arr.length - 1) {
+                            $('.tongdao').html(LYN.html)
+                        }
+                    } else {
+                        log('fial')
+                    }
+                })
+            }
         }
     })
     $.ajax(request)
 }
 channels()
-
-// 通过时间段统计数据
-let shuju = function () {
-    let request = ({
-        url: "http://120.79.12.95/cmd/order_daily_statis",
-        data:
-        {
-            "device": 'H5_Web',
-            "appname": 'scene_report',
-            "channel_id": 1,
-            "scene": 1,
-            "nowdate": date
-        },
-        header: {
-                "Content-Type": "application/json"
-            },
-        method: 'POST',
-        success: function(res) {
-            // var data = JSON.parse(res)
-            // log('数据',res)
-        }
-    })
-    $.ajax(request)
-}
-shuju()
-
-
-class c {
-    // ( url, data, [func, sync, Method] )
-    static guaSync(func) {
-        setTimeout(function() {
-            func()
-        }, 0)
-    }
-    static find(select) {
-        return Array.from(document.querySelectorAll(select))
-    }
-    static Ajax(request) {
-        var req = {
-            url: "http://120.79.12.95/cmd/channels_of_scene",//服务器url
-            // 传对象 自动转JSON
-            data:
-            {
-                "device": 'H5_Web',
-                "appname": 'scene_report',
-                "id": 1
-            } ,
-            // 若不设置 则为异步 设置则为同步
-            // sync: (request.sync === undefined) ? true : false,
-            method: 'POST',
-            // header: request.header || {},
-            contentType: 'application/json',
-            callback: function(res) {
-                console.log('读取成功！')
-            }
-        }
-        var res = null
-        var r = new XMLHttpRequest()
-        r.open(req.method, req.url, req.sync)
-        r.setRequestHeader('Content-Type', req.contentType)
-        // setHeader
-        Object.keys(req.header).forEach(key => {
-            r.setRequestHeader(key, req.header[key])
-        })
-        r.onreadystatechange = function() {
-            if (r.readyState === 4) {
-                res = r.response
-                req.callback(res)
-            }
-        }
-        if (req.method === 'GET') {
-            r.send()
-        } else {
-            // POST
-            r.send(req.data)
-        }
-        return res
-    }
-    // ( name, [value, day] )
-    static Cookie(name, value, day) {
-        if (value === undefined) {
-            // GET Cookie
-            var arr = document.cookie.split('; ')
-            for (var i of arr) {
-                var e = i.split('=')
-                if (e[0] === name) {
-                    return e[1]
-                }
-            }
-        } else {
-            // POST Cookie
-            var date = new Date()
-            var str = ''
-            if (Number.isInteger(day)) {
-                date.setTime(date.getTime() + day * 24 * 3600 * 1000)
-                str = ";expires=" + date.toGMTString()
-            }
-            document.cookie = name + "=" + encodeURIComponent(value) + str
-        }
-    }
-}
     </script>
 </html>
