@@ -247,7 +247,14 @@ let scene = function () {
         success: function(res) {
             var data = JSON.parse(res)
             log('景区ID',data)
-            LYN['scene_id'] = 1
+            let list = data.list
+            log(list)
+            for (var i = 0; i < list.length; i++) {
+                let e = list[i]
+                // log(e.id, e.name)
+            }
+            // LYN['scene_id'] = data.list.id
+            // log(LYN['scene_id'])
             // let temp = data.list
             // // log(temp)
             // if (temp.length < 1) {
@@ -259,87 +266,147 @@ let scene = function () {
 }
 scene()
 
-// 通过时间段统计数据
-let shuju = function (channel_id, e) {
-    let promise = new Promise(function(resolve, reject) {
-        let request = ({
-            url: "http://120.79.12.95/istatistics/todayAccount",
-            data:
-            {
-                "device": 'H5_Web',
-                "appname": 'scene_report',
-                "date": 'date',
-                "channel_id": channel_id,
-                "scene_id": LYN['scene_id'],
-                // "time_start": timestart,
-                // "time_end": timeend
-            },
-            header: {
-                "Content-Type": "application/json"
-            },
-            method: 'POST',
-            success: function(res) {
-                var data = JSON.parse(res)
-                resolve(data)
-            }
-        })
-        $.ajax(request)
-    })
-    return promise
-}
-
-
-// 获取所有通道ID修改页面显示
-let channels = function () {
+// 金额，人数显示
+let xinxi = function () {
     let request = ({
-        url: "http://120.79.12.95/cmd/channels_of_scene",
-        // 传对象 自动转JSON
-        data:
-        {
-            "device": 'H5_Web',
-            "appname": 'scene_report',
-            "id": 1
+        url: "http://120.79.12.95/tools/api/wx_boss_board",
+        data: {
+            "action": 'incomeAndvisitor',
+            "scene_id": 1,
         },
         header: {
                 "Content-Type": "application/json"
             },
         method: 'POST',
-        success: function(res) {
-            let data = JSON.parse(res)
-            log('通道ID',data)
-            let temp = data.list
-            LYN.html = ''
-            let arr = temp.slice(0 , 4)
-            log(temp)
-            // for (let e of arr) {
-            for(let i = 0; i < arr.length; i++) {
-                let e = arr[i]
-                shuju(e.id, e).then(function(res) {
-                    // 金额
-                    if (res.result === 1) {
-                        let money = res.statistics.used_coming_count
-                        let t = `
-                        <div class="fl-1" data-id="${e.id}">
-                            <div class="fl-1-1">
-                                <div class="time">${shijian}min</div>
-                                <div class="qian">${money}</div>
-                        </div>
-                        <div class="xm">${e.name}</div>
-                        </div>`
-                        // log(LYN.html , t)
-                        LYN.html = LYN.html + t
-                        if (i === arr.length - 1) {
-                            $('.tongdao').html(LYN.html)
-                        }
-                    } else {
-                        log('fial')
-                    }
-                })
+        success: function (res) {
+            var data = JSON.parse(res)
+            log(data)
+            if (data.result === 0) {
+                let money = data.info.today_income
+                let people = data.info.today_visitors
+                // log(money,people)
+                let mp = `
+                <div class="money">
+                    <img src="image/u301.png" alt="">
+                    <div class="money-number">￥${money}</div>
+                </div>
+                <div class="people">
+                    <img src="image/u305.png" alt="">
+                    <div class="people-number">${people}人</div>
+                </div>
+                `
+                // log(LYN.html , mp)
+                LYN.html = mp
+                $('.mp').html(LYN.html)
             }
         }
     })
     $.ajax(request)
 }
-channels()
+xinxi()
+
+// 园区各个游玩项目的总收入
+let shouru = function () {
+    let request = ({
+        url: "http://120.79.12.95/tools/api/wx_boss_board",
+        data: {
+            "action": 'incomeOfchannels',
+            "scene_id": 1,
+        },
+        header: {
+                "Content-Type": "application/json"
+            },
+        method: 'POST',
+        success: function (res) {
+            let data = JSON.parse(res)
+            log(data)
+        }
+    })
+    $.ajax(request)
+}
+shouru()
+// 今日统计数据
+// let shuju = function (channel_id, e) {
+//     let promise = new Promise(function(resolve, reject) {
+//         let request = ({
+//             url: "http://120.79.12.95/istatistics/todayAccount",
+//             data:
+//             {
+//                 "device": 'H5_Web',
+//                 "appname": 'scene_report',
+//                 "date": 'date',
+//                 "channel_id": channel_id,
+//                 "scene_id": LYN['scene_id'],
+//                 // "time_start": timestart,
+//                 // "time_end": timeend
+//             },
+//             header: {
+//                 "Content-Type": "application/json"
+//             },
+//             method: 'POST',
+//             success: function(res) {
+//                 var data = JSON.parse(res)
+//                 resolve(data)
+//             }
+//         })
+//         $.ajax(request)
+//     })
+//     return promise
+// // }
+
+
+// 获取所有通道ID修改页面显示
+// let channels = function () {
+//     let request = ({
+//         url: "http://120.79.12.95/cmd/channels_of_scene",
+//         // 传对象 自动转JSON
+//         data:
+//         {
+//             "device": 'H5_Web',
+//             "appname": 'scene_report',
+//             "id": 1
+//         },
+//         header: {
+//                 "Content-Type": "application/json"
+//             },
+//         method: 'POST',
+//         success: function(res) {
+//             let data = JSON.parse(res)
+//             log('通道ID',data)
+//             let temp = data.list
+//             LYN.html = ''
+//             let arr = temp.slice(0 , 4)
+//             log(arr)
+//             // for (let e of arr) {
+//             for(let i = 0; i < arr.length; i++) {
+//                 let e = arr[i]
+//                 shuju(e.id, e).then(function(res) {
+//                     log(res)
+//                     // 金额
+//                     if (res.result === 1) {
+//                         let money = res.statistics.used_coming_count
+//                         let t = `
+//                         <div class="fl-1" data-id="${e.id}">
+//                             <div class="fl-1-1">
+//                                 <div class="time">${shijian}min</div>
+//                                 <div class="qian">${money}</div>
+//                         </div>
+//                         <div class="xm">${e.name}</div>
+//                         </div>`
+//                         // log(LYN.html , t)
+//                         LYN.html = LYN.html + t
+//                         if (i === arr.length - 1) {
+//                             $('.tongdao').html(LYN.html)
+//                         }
+//                     } else {
+//                         log('fial')
+//                     }
+//                 })
+//             }
+//         }
+//     })
+//     $.ajax(request)
+// }
+// channels()
     </script>
 </html>
