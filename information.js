@@ -117,7 +117,7 @@ let log = console.log.bind(console)
   scene()
 
   // 金额，人数显示
-  let xinxi = function() {
+  let today_xinxi = function() {
       let request = ({
           url: "http://120.79.12.95/tools/api/wx_boss_board",
           data: {
@@ -130,22 +130,22 @@ let log = console.log.bind(console)
           method: 'POST',
           success: function(res) {
               var data = JSON.parse(res)
-              // log(data)
+              log(data)
               // let LYN.mp.html = ''
               if (data.result === 0) {
                   let money = data.info.today_income
                   let people = data.info.today_visitors
-                  // log(money,people)
+                  log(money,people)
                   let mp = `
-          <div class="money">
-              <img src="image/u301.png" alt="">
-              <div class="money-number">￥${money}</div>
-          </div>
-          <div class="people">
-              <img src="image/u305.png" alt="">
-              <div class="people-number">${people}人</div>
-          </div>
-          `
+                  <div class="money">
+                      <img src="image/u301.png" alt="">
+                      <div class="money-number">￥${money}</div>
+                  </div>
+                  <div class="people">
+                      <img src="image/u305.png" alt="">
+                      <div class="people-number">${people}人</div>
+                  </div>
+                  `
                   // log(LYN.html , mp)
                   LYN.html = mp
                   $('.mp').html(LYN.html)
@@ -154,10 +154,9 @@ let log = console.log.bind(console)
       })
       $.ajax(request)
   }
-  xinxi()
 
   // 园区各个游玩项目的总收入
-  let shouru = function() {
+  let today_shouru = function() {
       let request = ({
           url: "http://120.79.12.95/tools/api/wx_boss_board",
           data: {
@@ -174,11 +173,10 @@ let log = console.log.bind(console)
               LYN.html = ''
               if (data.result === 0) {
                   let infos = data.infos
-                  log(infos)
+                  // log(infos)
                   for (var i = 0; i < infos.length; i++) {
-                      log(i)
                       let info = infos[i]
-                      log(info)
+                      // log(info)
                       let money = info.total_income_today
                       let channel = info.channel_name
                       let id = info.channel_id
@@ -202,7 +200,13 @@ let log = console.log.bind(console)
       })
       $.ajax(request)
   }
-  shouru()
+
+// 页面初始显示今日数据
+  let onshow = function () {
+      today_xinxi()
+      today_shouru()
+  }
+  onshow()
 
   // 今日统计数据
   // let shuju = function (channel_id, e) {
@@ -292,6 +296,8 @@ let log = console.log.bind(console)
       log('今日数据')
       $('.month').removeClass('click')
       $('.today').addClass('click')
+      today_xinxi()
+      today_shouru()
   })
 
   // 点击本月数据
