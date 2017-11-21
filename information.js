@@ -116,7 +116,80 @@ let log = console.log.bind(console)
   }
   scene()
 
-  // 金额，人数显示
+// let today_xinxi = function() {
+//     Sea.Ajax({
+//         method: 'POST',
+//         url: "http://120.79.12.95/tools/api/wx_boss_board ",
+//         data: {
+//             "action": 'incomeAndvisitor',
+//             "scene_id": 1,
+//         },
+//     }).then(function(res) {
+//         var data = JSON.parse(res)
+//         log(data)
+//         // let LYN.mp .html = ''
+//         if (data.result === 0) {
+//             let money = data.info.today_income
+//             let people = data.info.today_visitors
+//             log(money,people)
+//             let mp = `
+//             <div class="money">
+//                 <img src="image/u301.png" alt="">
+//                 <div class="money-number">￥${money}</div>
+//             </div>
+//             <div class="people">
+//                 <img src="image/u305.png" alt="">
+//                 <div class="people-number">${people}人</div>
+//             </div>
+//             `
+//             // log(LYN.html , mp)
+//             LYN.html = mp
+//             $('.mp').html(LYN.html)
+//         }
+//     })
+// }
+
+// let today_shouru = function() {
+//   Sea.Ajax({
+//       method: 'POST',
+//       url: "http://120.79.12.95/tools/api/wx_boss_board ",
+//       data: {
+//           "action": 'incomeOfchannels',
+//           "scene_id": 1,
+//       },
+//   }).then(function(res) {
+//       var data = JSON.parse(res)
+//       log(data)
+//       // let LYN.mp .html = ''
+//       if (data.result === 0) {
+//           let infos = data.infos
+//           // log(infos)
+//           for (var i = 0; i < infos.length; i++) {
+//               let info = infos[i]
+//               // log(info)
+//               let money = info.total_income_today
+//               let channel = info.channel_name
+//               let id = info.channel_id
+//               // log(money,channel,id)
+//               let t = `
+//               <div class="fl-1" data-id="${id}">
+//                   <div class="fl-1-1">
+//                       <div class="time">${shijian}min</div>
+//                       <div class="qian">${money}</div>
+//                   </div>
+//                   <div class="xm">${channel}</div>
+//               </div>`
+//               LYN.html = LYN.html + t
+//               // log(LYN.html)
+//               if (i === infos.length - 1) {
+//                   $('.tongdao').html(LYN.html)
+//               }
+//           }
+//       }
+//   })
+// }
+
+  // 金额，人数显示（今日数据）
   let today_xinxi = function() {
       let request = ({
           url: "http://120.79.12.95/tools/api/wx_boss_board",
@@ -155,7 +228,7 @@ let log = console.log.bind(console)
       $.ajax(request)
   }
 
-  // 园区各个游玩项目的总收入
+  // 园区各个游玩项目的总收入（今日数据）
   let today_shouru = function() {
       let request = ({
           url: "http://120.79.12.95/tools/api/wx_boss_board",
@@ -178,6 +251,91 @@ let log = console.log.bind(console)
                       let info = infos[i]
                       // log(info)
                       let money = info.total_income_today
+                      let channel = info.channel_name
+                      let id = info.channel_id
+                      // log(money,channel,id)
+                      let t = `
+                      <div class="fl-1" data-id="${id}">
+                          <div class="fl-1-1">
+                              <div class="time">${shijian}min</div>
+                              <div class="qian">${money}</div>
+                          </div>
+                          <div class="xm">${channel}</div>
+                      </div>`
+                      LYN.html = LYN.html + t
+                      // log(LYN.html)
+                      if (i === infos.length - 1) {
+                          $('.tongdao').html(LYN.html)
+                      }
+                  }
+              }
+          }
+      })
+      $.ajax(request)
+  }
+
+// 金额，人数显示（本月数据）
+  let month_xinxi = function() {
+      let request = ({
+          url: "http://120.79.12.95/tools/api/wx_boss_board",
+          data: {
+              "action": 'incomeAndvisitor',
+              "scene_id": 1,
+          },
+          header: {
+              "Content-Type": "application/json"
+          },
+          method: 'POST',
+          success: function(res) {
+              var data = JSON.parse(res)
+              log(data)
+              // let LYN.mp.html = ''
+              if (data.result === 0) {
+                  let money = data.info.month_income
+                  let people = data.info.total_visitors
+                  log(money,people)
+                  let mp = `
+                  <div class="money">
+                      <img src="image/u301.png" alt="">
+                      <div class="money-number">￥${money}</div>
+                  </div>
+                  <div class="people">
+                      <img src="image/u305.png" alt="">
+                      <div class="people-number">${people}人</div>
+                  </div>
+                  `
+                  // log(LYN.html , mp)
+                  LYN.html = mp
+                  $('.mp').html(LYN.html)
+              }
+          }
+      })
+      $.ajax(request)
+  }
+
+// 园区各个游玩项目的总收入（本月数据）
+  let month_shouru = function() {
+      let request = ({
+          url: "http://120.79.12.95/tools/api/wx_boss_board",
+          data: {
+              "action": 'incomeOfchannels',
+              "scene_id": 1,
+          },
+          header: {
+              "Content-Type": "application/json"
+          },
+          method: 'POST',
+          success: function(res) {
+              let data = JSON.parse(res)
+              log(data)
+              LYN.html = ''
+              if (data.result === 0) {
+                  let infos = data.infos
+                  // log(infos)
+                  for (var i = 0; i < infos.length; i++) {
+                      let info = infos[i]
+                      // log(info)
+                      let money = info.total_income_month
                       let channel = info.channel_name
                       let id = info.channel_id
                       // log(money,channel,id)
@@ -296,8 +454,7 @@ let log = console.log.bind(console)
       log('今日数据')
       $('.month').removeClass('click')
       $('.today').addClass('click')
-      today_xinxi()
-      today_shouru()
+      onshow()
   })
 
   // 点击本月数据
@@ -305,4 +462,6 @@ let log = console.log.bind(console)
       log('本月数据')
       $('.today').removeClass('click')
       $('.month').addClass('click')
+      month_xinxi()
+      month_shouru()
   })
