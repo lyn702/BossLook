@@ -14,10 +14,10 @@ let login = function () {
         },
         method: 'POST',
         success: function (res) {
-            let data = JSON.parse(res)
-            log(data)
+            // let data = JSON.parse(res)
+            log(res)
             // 登录成功
-            if (data.result === 0) {
+            if (res.result === 0) {
                 log('登录成功')
             } else {
                 alert('登录失败')
@@ -26,4 +26,9 @@ let login = function () {
     })
     $.ajax(request)
 }
-login()
+// login()
+
+// 点击登录按钮
+$('.btn').on('click', function() {
+    login()
+})

@@ -24,6 +24,9 @@ let log = console.log.bind(console)
   time()
   let date = time()
 
+// let suiji = function () {
+//     return Math.random()
+// }
   // 获得小时数
   let hour = function(z) {
       if (z === undefined) {
@@ -192,9 +195,9 @@ let log = console.log.bind(console)
   // 金额，人数显示（今日数据）
   let today_xinxi = function() {
       let request = ({
-          url: "http://120.79.12.95/tools/api/wx_boss_board",
+          url: "http://120.79.12.95/newapi/Wxbossboard/incomeAndVisitor",
           data: {
-              "action": 'incomeAndvisitor',
+              // "action": 'incomeAndvisitor',
               "scene_id": 1,
           },
           header: {
@@ -202,13 +205,13 @@ let log = console.log.bind(console)
           },
           method: 'POST',
           success: function(res) {
-              var data = JSON.parse(res)
-              log(data)
+              // var data = JSON.parse(res)
+              log(res)
               // let LYN.mp.html = ''
-              if (data.result === 0) {
-                  let money = data.info.today_income
-                  let people = data.info.today_visitors
-                  log(money,people)
+              if (res.result === 0) {
+                  let money = res.info.today_income
+                  let people = res.info.today_visitors
+                  // log(money,people)
                   let mp = `
                   <div class="money">
                       <img src="image/u301.png" alt="">
@@ -222,6 +225,8 @@ let log = console.log.bind(console)
                   // log(LYN.html , mp)
                   LYN.html = mp
                   $('.mp').html(LYN.html)
+              } else {
+                  alert('加载失败')
               }
           }
       })
@@ -231,9 +236,9 @@ let log = console.log.bind(console)
   // 园区各个游玩项目的总收入（今日数据）
   let today_shouru = function() {
       let request = ({
-          url: "http://120.79.12.95/tools/api/wx_boss_board",
+          url: "http://120.79.12.95/newapi/Wxbossboard/incomeOfChannels",
           data: {
-              "action": 'incomeOfchannels',
+              // "action": 'incomeOfchannels',
               "scene_id": 1,
           },
           header: {
@@ -241,11 +246,11 @@ let log = console.log.bind(console)
           },
           method: 'POST',
           success: function(res) {
-              let data = JSON.parse(res)
-              log(data)
+              // let data = JSON.parse(res)
+              log(res)
               LYN.html = ''
-              if (data.result === 0) {
-                  let infos = data.infos
+              if (res.result === 0) {
+                  let infos = res.infos
                   // log(infos)
                   for (var i = 0; i < infos.length; i++) {
                       let info = infos[i]
@@ -277,9 +282,9 @@ let log = console.log.bind(console)
 // 金额，人数显示（本月数据）
   let month_xinxi = function() {
       let request = ({
-          url: "http://120.79.12.95/tools/api/wx_boss_board",
+          url: "http://120.79.12.95/newapi/Wxbossboard/incomeAndVisitor",
           data: {
-              "action": 'incomeAndvisitor',
+              // "action": 'incomeAndvisitor',
               "scene_id": 1,
           },
           header: {
@@ -287,12 +292,12 @@ let log = console.log.bind(console)
           },
           method: 'POST',
           success: function(res) {
-              var data = JSON.parse(res)
-              log(data)
+              // var data = JSON.parse(res)
+              log(res)
               // let LYN.mp.html = ''
-              if (data.result === 0) {
-                  let money = data.info.month_income
-                  let people = data.info.total_visitors
+              if (res.result === 0) {
+                  let money = res.info.month_income
+                  let people = res.info.total_visitors
                   log(money,people)
                   let mp = `
                   <div class="money">
@@ -316,7 +321,7 @@ let log = console.log.bind(console)
 // 园区各个游玩项目的总收入（本月数据）
   let month_shouru = function() {
       let request = ({
-          url: "http://120.79.12.95/tools/api/wx_boss_board",
+          url: "http://120.79.12.95/newapi/Wxbossboard/incomeOfChannels",
           data: {
               "action": 'incomeOfchannels',
               "scene_id": 1,
@@ -326,11 +331,11 @@ let log = console.log.bind(console)
           },
           method: 'POST',
           success: function(res) {
-              let data = JSON.parse(res)
-              log(data)
+              // let data = JSON.parse(res)
+              log(res)
               LYN.html = ''
-              if (data.result === 0) {
-                  let infos = data.infos
+              if (res.result === 0) {
+                  let infos = res.infos
                   // log(infos)
                   for (var i = 0; i < infos.length; i++) {
                       let info = infos[i]
