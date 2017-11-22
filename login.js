@@ -14,15 +14,6 @@ let hideShowPsw = function () {
 		eye.src = "image/yincang.png";
 	}
 }
-// function hideShowPsw(){
-// 	if (demoInput.type == "password") {
-// 		demoInput.type = "text";
-// 		eye.src = "image/xianshi.png";
-// 	}else {
-// 		demoInput.type = "password";
-// 		eye.src = "image/yincang.png";
-// 	}
-// }
 
 // 用户登录并且获取景区ID
 let login = function () {
@@ -50,10 +41,11 @@ let login = function () {
                 // log(res.user_info.scene_id)
                 LYN['scene_id'] = res.user_info.scene_id
                 log(LYN['scene_id'])
+                window.location = 'information.html'
             }
             // 登录失败
             else {
-                alert('登录失败')
+                alert('请您输入正确的账号密码')
             }
         }
     })
@@ -63,10 +55,5 @@ let login = function () {
 
 // 点击登录按钮
 $('.btn').on('click', function() {
-    let nameInput = document.querySelector('#input-name')
-    let nickname = nameInput.value
-    let mimaInput = document.querySelector('#input-mima')
-    let password = mimaInput.value
-    // log('点击', nickname, password)
     login()
 })
