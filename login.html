@@ -54,6 +54,7 @@
         }
         .info-name {
             font-weight: 400;
+            font-size: 1.4rem;
             font-style: normal;
             margin: 1rem auto;
             padding: .5rem 0;
@@ -86,6 +87,14 @@
         .info-login-box+.info-login-box {
             border-top-style: none;
         }
+        #eye {
+            margin-right: 10px;
+            width: 30px;
+            height: 20px;
+        }
+        #input-name {
+            margin-right: 52px;
+        }
         .info-login-box input {
             outline: 0;
             border-style: none;
@@ -114,10 +123,11 @@
             <div class="info-name">BOSS看板登陆</div>
             <div class="info-login">
                 <div class="info-login-box">
-                    <input type="text" name="" placeholder="请输入您的账号" value="">
+                    <input id='input-name' type="text" placeholder="请输入您的账号">
                 </div>
                 <div class="info-login-box">
-                    <input type="text" name="" placeholder="请输入您的密码" value="">
+            		<input id="input-mima" type="password" placeholder="请输入您的密码">
+                    <img id="eye" onclick="hideShowPsw()" src="image/yincang.png">
                 </div>
                 <div class="info-login-wechat">
                     <div class="inline">

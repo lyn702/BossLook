@@ -1,13 +1,42 @@
 let log = console.log.bind(console)
+const LYN = {}
 
-// 用户登录
+// 密码显示和隐藏
+var demoImg = document.getElementById("eye");
+var demoInput = document.getElementById("input-mima");
+//隐藏text block，显示password block
+let hideShowPsw = function () {
+    if (demoInput.type == "password") {
+		demoInput.type = "text";
+		eye.src = "image/xianshi.png";
+	}else {
+		demoInput.type = "password";
+		eye.src = "image/yincang.png";
+	}
+}
+// function hideShowPsw(){
+// 	if (demoInput.type == "password") {
+// 		demoInput.type = "text";
+// 		eye.src = "image/xianshi.png";
+// 	}else {
+// 		demoInput.type = "password";
+// 		eye.src = "image/yincang.png";
+// 	}
+// }
+
+// 用户登录并且获取景区ID
 let login = function () {
+    let nameInput = document.querySelector('#input-name')
+    let nickname = nameInput.value
+    let mimaInput = document.querySelector('#input-mima')
+    let password = mimaInput.value
+    log(nickname, password)
     let request = ({
-        url: "http://120.79.12.95/tools/api/wx_boss_board",
+        url: "http://120.79.12.95/newapi/Wxbossboard/login",
         data: {
-            "action": 'login',
-            "nickname": 'string 用户登录名',
-            "password": 'string 用户密码',
+            // "action": 'login',
+            "nickname": nickname,
+            "password": password,
         },
         header: {
             "Content-Type": "application/json"
@@ -18,8 +47,12 @@ let login = function () {
             log(res)
             // 登录成功
             if (res.result === 0) {
-                log('登录成功')
-            } else {
+                // log(res.user_info.scene_id)
+                LYN['scene_id'] = res.user_info.scene_id
+                log(LYN['scene_id'])
+            }
+            // 登录失败
+            else {
                 alert('登录失败')
             }
         }
@@ -30,5 +63,10 @@ let login = function () {
 
 // 点击登录按钮
 $('.btn').on('click', function() {
+    let nameInput = document.querySelector('#input-name')
+    let nickname = nameInput.value
+    let mimaInput = document.querySelector('#input-mima')
+    let password = mimaInput.value
+    // log('点击', nickname, password)
     login()
 })
