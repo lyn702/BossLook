@@ -1,5 +1,5 @@
 let log = console.log.bind(console)
-const LYN = {}
+const su = {}
 
 // 密码显示和隐藏
 let demoImg = document.getElementById("eye");

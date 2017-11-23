@@ -22,10 +22,6 @@
   time()
   let date = time()
 
-// let suiji = function () {
-//     return Math.random()
-// }
-
   // 获得小时数
   let hour = function(z) {
       if (z === undefined) {
@@ -84,112 +80,15 @@
       return html.replace(/>(\s+)</img, '><')
   }
 
-  // 获得景区
+  // 获得景区ID
   let scene = function() {
-      let request = ({
-          url: "http://120.79.12.95/cmd/scenes",
-          data: {
-              "device": 'H5_Web',
-              "appname": 'scene_report',
-          },
-          header: {
-              "Content-Type": "application/json"
-          },
-          method: 'POST',
-          success: function(res) {
-              var data = JSON.parse(res)
-              // log('景区ID', data)
-              let list = data.list
-              // log(list)
-              for (var i = 0; i < list.length; i++) {
-                  let e = list[i]
-                  // log(e.id, e.name)
-              }
-              // LYN['scene_id'] = data.list.id
-              // log(LYN['scene_id'])
-              // let temp = data.list
-              // // log(temp)
-              // if (temp.length < 1) {
-              //     alert('当前无绑定的景区')
-              // }
-          }
-      })
-      $.ajax(request)
+      let lujing = location.search.slice(1)
+      let scene_id = lujing.split('=')[1]
+      // log(scene_id)
+      su['scene_id'] = scene_id
+      // log(su['scene_id'])
   }
   scene()
-
-// let today_xinxi = function() {
-//     Sea.Ajax({
-//         method: 'POST',
-//         url: "http://120.79.12.95/tools/api/wx_boss_board ",
-//         data: {
-//             "action": 'incomeAndvisitor',
-//             "scene_id": 1,
-//         },
-//     }).then(function(res) {
-//         var data = JSON.parse(res)
-//         log(data)
-//         // let LYN.mp .html = ''
-//         if (data.result === 0) {
-//             let money = data.info.today_income
-//             let people = data.info.today_visitors
-//             log(money,people)
-//             let mp = `
-//             <div class="money">
-//                 <img src="image/u301.png" alt="">
-//                 <div class="money-number">￥${money}</div>
-//             </div>
-//             <div class="people">
-//                 <img src="image/u305.png" alt="">
-//                 <div class="people-number">${people}人</div>
-//             </div>
-//             `
-//             // log(LYN.html , mp)
-//             LYN.html = mp
-//             $('.mp').html(LYN.html)
-//         }
-//     })
-// }
-
-// let today_shouru = function() {
-//   Sea.Ajax({
-//       method: 'POST',
-//       url: "http://120.79.12.95/tools/api/wx_boss_board ",
-//       data: {
-//           "action": 'incomeOfchannels',
-//           "scene_id": 1,
-//       },
-//   }).then(function(res) {
-//       var data = JSON.parse(res)
-//       log(data)
-//       // let LYN.mp .html = ''
-//       if (data.result === 0) {
-//           let infos = data.infos
-//           // log(infos)
-//           for (var i = 0; i < infos.length; i++) {
-//               let info = infos[i]
-//               // log(info)
-//               let money = info.total_income_today
-//               let channel = info.channel_name
-//               let id = info.channel_id
-//               // log(money,channel,id)
-//               let t = `
-//               <div class="fl-1" data-id="${id}">
-//                   <div class="fl-1-1">
-//                       <div class="time">${shijian}min</div>
-//                       <div class="qian">${money}</div>
-//                   </div>
-//                   <div class="xm">${channel}</div>
-//               </div>`
-//               LYN.html = LYN.html + t
-//               // log(LYN.html)
-//               if (i === infos.length - 1) {
-//                   $('.tongdao').html(LYN.html)
-//               }
-//           }
-//       }
-//   })
-// }
 
   // 金额，人数显示（今日数据）
   let today_xinxi = function() {
@@ -197,7 +96,7 @@
           url: "http://120.79.12.95/newapi/Wxbossboard/incomeAndVisitor",
           data: {
               // "action": 'incomeAndvisitor',
-              "scene_id": 1,
+              "scene_id": su['scene_id'],
           },
           header: {
               "Content-Type": "application/json"
@@ -206,7 +105,7 @@
           success: function(res) {
               // var data = JSON.parse(res)
               log(res)
-              // let LYN.mp.html = ''
+              // let su.mp.html = ''
               if (res.result === 0) {
                   let money = res.info.today_income
                   let people = res.info.today_visitors
@@ -221,9 +120,9 @@
                       <div class="people-number">${people}人</div>
                   </div>
                   `
-                  // log(LYN.html , mp)
-                  LYN.html = mp
-                  $('.mp').html(LYN.html)
+                  // log(su.html , mp)
+                  su.html = mp
+                  $('.mp').html(su.html)
               } else {
                   alert('加载失败')
               }
@@ -238,7 +137,7 @@
           url: "http://120.79.12.95/newapi/Wxbossboard/incomeOfChannels",
           data: {
               // "action": 'incomeOfchannels',
-              "scene_id": 1,
+              "scene_id": su['scene_id'],
           },
           header: {
               "Content-Type": "application/json"
@@ -247,7 +146,7 @@
           success: function(res) {
               // let data = JSON.parse(res)
               log(res)
-              LYN.html = ''
+              su.html = ''
               if (res.result === 0) {
                   let infos = res.infos
                   // log(infos)
@@ -267,10 +166,10 @@
                           </div>
                           <div class="xm">${channel}</div>
                       </div>`
-                      LYN.html = LYN.html + t
-                      // log(LYN.html)
+                      su.html = su.html + t
+                      // log(su.html)
                       if (i === infos.length - 1) {
-                          $('.tongdao').html(LYN.html)
+                          $('.tongdao').html(su.html)
                       }
                       if (money === 0) {
                           log(id, sid)
@@ -291,7 +190,7 @@
           url: "http://120.79.12.95/newapi/Wxbossboard/incomeAndVisitor",
           data: {
               // "action": 'incomeAndvisitor',
-              "scene_id": 1,
+              "scene_id": su['scene_id'],
           },
           header: {
               "Content-Type": "application/json"
@@ -300,7 +199,7 @@
           success: function(res) {
               // var data = JSON.parse(res)
               log(res)
-              // let LYN.mp.html = ''
+              // let su.mp.html = ''
               if (res.result === 0) {
                   let money = res.info.month_income
                   let people = res.info.total_visitors
@@ -315,9 +214,9 @@
                       <div class="people-number">${people}人</div>
                   </div>
                   `
-                  // log(LYN.html , mp)
-                  LYN.html = mp
-                  $('.mp').html(LYN.html)
+                  // log(su.html , mp)
+                  su.html = mp
+                  $('.mp').html(su.html)
               }
           }
       })
@@ -330,7 +229,7 @@
           url: "http://120.79.12.95/newapi/Wxbossboard/incomeOfChannels",
           data: {
               "action": 'incomeOfchannels',
-              "scene_id": 1,
+              "scene_id": su['scene_id'],
           },
           header: {
               "Content-Type": "application/json"
@@ -339,7 +238,7 @@
           success: function(res) {
               // let data = JSON.parse(res)
               log(res)
-              LYN.html = ''
+              su.html = ''
               if (res.result === 0) {
                   let infos = res.infos
                   // log(infos)
@@ -359,10 +258,10 @@
                           </div>
                           <div class="xm">${channel}</div>
                       </div>`
-                      LYN.html = LYN.html + t
-                      // log(LYN.html)
+                      su.html = su.html + t
+                      // log(su.html)
                       if (i === infos.length - 1) {
-                          $('.tongdao').html(LYN.html)
+                          $('.tongdao').html(su.html)
                       }
                       if (money === 0) {
                           log(id, sid)
@@ -392,7 +291,7 @@
   //                 "appname": 'scene_report',
   //                 "date": 'date',
   //                 "channel_id": channel_id,
-  //                 "scene_id": LYN['scene_id'],
+  //                 "scene_id": su['scene_id'],
   //                 // "time_start": timestart,
   //                 // "time_end": timeend
   //             },
@@ -429,7 +328,7 @@
   //             let data = JSON.parse(res)
   //             log('通道ID',data)
   //             let temp = data.list
-  //             LYN.html = ''
+  //             su.html = ''
   //             let arr = temp.slice(0 , 4)
   //             log(arr)
   //             // for (let e of arr) {
@@ -448,10 +347,10 @@
   //                         </div>
   //                         <div class="xm">${e.name}</div>
   //                         </div>`
-  //                         // log(LYN.html , t)
-  //                         LYN.html = LYN.html + t
+  //                         // log(su.html , t)
+  //                         su.html = su.html + t
   //                         if (i === arr.length - 1) {
-  //                             $('.tongdao').html(LYN.html)
+  //                             $('.tongdao').html(su.html)
   //                         }
   //                     } else {
   //                         log('fial')
