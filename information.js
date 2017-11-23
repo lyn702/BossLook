@@ -1,5 +1,3 @@
-// let log = console.log.bind(console)
-  // const LYN = {}
   // 获取时间
   let time = function(z) {
       if (z === undefined) {
@@ -259,10 +257,11 @@
                       let money = info.total_income_today
                       let channel = info.channel_name
                       let id = info.channel_id
-                      log(id, id % 3)
+                      let sid = id % 3 + 1
+                      // log(id, sid)
                       let t = `
                       <div class="fl" data-id="${id}">
-                          <div class="fl-1">
+                          <div class="xz fl-${sid} fl-1-${sid}">
                               <div class="time">${shijian}min</div>
                               <div class="qian">${money}</div>
                           </div>
@@ -273,15 +272,11 @@
                       if (i === infos.length - 1) {
                           $('.tongdao').html(LYN.html)
                       }
-                      if (id % 3 === 0) {
-                          $('.fl-1').addClass('fl-1-1')
-                      } else if (id % 3 === 1) {
-                          $('.fl-1').addClass('fl-1-2')
-                      } else if (id % 3 === 2) {
-                          $('.fl-1').addClass('fl-1-3')
+                      if (money === 0) {
+                          log(id, sid)
                       }
                   }
-                  // let s = document.querySelector('.fl')
+
                   // let all = s.attributes
                   // log(all)
               }
@@ -354,10 +349,11 @@
                       let money = info.total_income_month
                       let channel = info.channel_name
                       let id = info.channel_id
+                      let sid = id % 3 + 1
                       // log(money,channel,id)
                       let t = `
                       <div class="fl" data-id="${id}">
-                          <div class="fl-1">
+                          <div class="fl-${sid} fl-1-${sid}">
                               <div class="time">${shijian}min</div>
                               <div class="qian">${money}</div>
                           </div>
@@ -368,12 +364,8 @@
                       if (i === infos.length - 1) {
                           $('.tongdao').html(LYN.html)
                       }
-                      if (id % 3 === 0) {
-                          $('.fl-1').addClass('fl-1-1')
-                      } else if (id % 3 === 1) {
-                          $('.fl-1').addClass('fl-1-2')
-                      } else if (id % 3 === 2) {
-                          $('.fl-1').addClass('fl-1-3')
+                      if (money === 0) {
+                          log(id, sid)
                       }
                   }
               }

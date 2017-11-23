@@ -2,8 +2,8 @@ let log = console.log.bind(console)
 const LYN = {}
 
 // 密码显示和隐藏
-var demoImg = document.getElementById("eye");
-var demoInput = document.getElementById("input-mima");
+let demoImg = document.getElementById("eye");
+let demoInput = document.getElementById("input-mima");
 //隐藏text block，显示password block
 let hideShowPsw = function () {
     if (demoInput.type == "password") {
@@ -14,6 +14,10 @@ let hideShowPsw = function () {
 		eye.src = "image/yincang.png";
 	}
 }
+// 点击眼睛执行密码显示隐藏函数
+$('#eye').on('click', function() {
+    hideShowPsw()
+})
 
 // 用户登录并且获取景区ID
 let login = function () {
@@ -39,13 +43,12 @@ let login = function () {
             // 登录成功
             if (res.result === 0) {
                 // log(res.user_info.scene_id)
-                LYN['scene_id'] = res.user_info.scene_id
-                log(LYN['scene_id'])
-                window.location = 'information.html'
+                let scene_id = res.user_info.scene_id
+                window.location = `information.html?scene_id=${scene_id}`
             }
             // 登录失败
             else {
-                alert('请您输入正确的账号密码')
+                alert('请您输入正确的账号，密码')
             }
         }
     })
