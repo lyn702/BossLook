@@ -162,7 +162,7 @@
                       <div class="fl" data-id="${id}">
                           <div class="xz fl-${sid} fl-1-${sid}">
                               <div class="time">${shijian}min</div>
-                              <div class="qian">${money}</div>
+                              <div class="qian">￥${money}</div>
                           </div>
                           <div class="xm">${channel}</div>
                       </div>`
@@ -254,7 +254,7 @@
                       <div class="fl" data-id="${id}">
                           <div class="fl-${sid} fl-1-${sid}">
                               <div class="time">${shijian}min</div>
-                              <div class="qian">${money}</div>
+                              <div class="qian">￥${money}</div>
                           </div>
                           <div class="xm">${channel}</div>
                       </div>`
