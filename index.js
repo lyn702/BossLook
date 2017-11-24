@@ -8,10 +8,10 @@ let demoInput = document.getElementById("input-mima");
 let hideShowPsw = function () {
     if (demoInput.type == "password") {
 		demoInput.type = "text";
-		eye.src = "image/xianshi.png";
+		demoImg.src = "image/xianshi.png";
 	}else {
 		demoInput.type = "password";
-		eye.src = "image/yincang.png";
+		demoImg.src = "image/yincang.png";
 	}
 }
 // 点击眼睛执行密码显示隐藏函数
@@ -27,7 +27,7 @@ let login = function () {
     let password = mimaInput.value
     log(nickname, password)
     let request = ({
-        url: "http://120.79.12.95/newapi/Wxbossboard/login",
+        url: "https://leyuanxing.net/newapi/Wxbossboard/login",
         data: {
             // "action": 'login',
             "nickname": nickname,

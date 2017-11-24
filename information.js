@@ -93,7 +93,7 @@
   // 金额，人数显示（今日数据）
   let today_xinxi = function() {
       let request = ({
-          url: "http://120.79.12.95/newapi/Wxbossboard/incomeAndVisitor",
+          url: "https://leyuanxing.net/newapi/Wxbossboard/incomeAndVisitor",
           data: {
               // "action": 'incomeAndvisitor',
               "scene_id": su['scene_id'],
@@ -134,7 +134,7 @@
   // 园区各个游玩项目的总收入（今日数据）
   let today_shouru = function() {
       let request = ({
-          url: "http://120.79.12.95/newapi/Wxbossboard/incomeOfChannels",
+          url: "https://leyuanxing.net/newapi/Wxbossboard/incomeOfChannels",
           data: {
               // "action": 'incomeOfchannels',
               "scene_id": su['scene_id'],
@@ -187,7 +187,7 @@
 // 金额，人数显示（本月数据）
   let month_xinxi = function() {
       let request = ({
-          url: "http://120.79.12.95/newapi/Wxbossboard/incomeAndVisitor",
+          url: "https://leyuanxing.net/newapi/Wxbossboard/incomeAndVisitor",
           data: {
               // "action": 'incomeAndvisitor',
               "scene_id": su['scene_id'],
@@ -226,7 +226,7 @@
 // 园区各个游玩项目的总收入（本月数据）
   let month_shouru = function() {
       let request = ({
-          url: "http://120.79.12.95/newapi/Wxbossboard/incomeOfChannels",
+          url: "https://leyuanxing.net/newapi/Wxbossboard/incomeOfChannels",
           data: {
               "action": 'incomeOfchannels',
               "scene_id": su['scene_id'],
