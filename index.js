@@ -1,5 +1,6 @@
 let log = console.log.bind(console)
 const su = {}
+var todoList = []
 
 // 密码显示和隐藏
 let demoImg = document.getElementById("eye");
@@ -19,6 +20,16 @@ $('#eye').on('click', function() {
     hideShowPsw()
 })
 
+$(document).ready(function () {
+            //读取 localStage 本地存储，填充用户名密码,如果自动登录有值直接跳转；
+            //相反，跳转到本页面,等待登陆处理
+            var storage = localStorage.user
+            var getnickname = storage['nickname']
+            log(getnickname)
+            var password = localStorage.user.password
+            log(password)
+        });
+
 // 用户登录并且获取景区ID
 let login = function () {
     let nameInput = document.querySelector('#input-name')
@@ -26,6 +37,11 @@ let login = function () {
     let mimaInput = document.querySelector('#input-mima')
     let password = mimaInput.value
     log(nickname, password)
+    // 储存账号密码
+    localStorage.user = JSON.stringify({
+        'nickname': nickname,
+        'password': password,
+    })
     let request = ({
         url: "https://leyuanxing.net/newapi/Wxbossboard/login",
         data: {
@@ -54,7 +70,7 @@ let login = function () {
     })
     $.ajax(request)
 }
-// login()
+
 
 // 点击登录按钮
 $('.btn').on('click', function() {
