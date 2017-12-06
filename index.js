@@ -60,7 +60,7 @@ let login = function () {
             if (res.result === 0) {
                 // log(res.user_info.scene_id)
                 let scene_id = res.user_info.scene_id
-                window.location = `information.html?scene_id=${scene_id}`
+                // window.location = `information.html?scene_id=${scene_id}`
             }
             // 登录失败
             else {
