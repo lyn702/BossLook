@@ -20,28 +20,43 @@ $('#eye').on('click', function() {
     hideShowPsw()
 })
 
+// 选择记住密码
+// let readyLogin = function () {
+//     let useNickname = document.querySelector('#input-name').value
+//     let usePassword = document.querySelector('#input-mima').value
+//     log(useNickname, usePassword)
+//     if (useNickname != "" && usePassword != "") {
+//         let storage = window.localStorage
+//         log(storage)
+//     }
+// }
+
+
 $(document).ready(function () {
-            //读取 localStage 本地存储，填充用户名密码,如果自动登录有值直接跳转；
-            //相反，跳转到本页面,等待登陆处理
-            var storage = localStorage.user
-            var getnickname = storage['nickname']
-            log(getnickname)
-            var password = localStorage.user.password
-            log(password)
-        });
+    //读取 localStage 本地存储，填充用户名密码;
+    
+});
 
 // 用户登录并且获取景区ID
 let login = function () {
-    let nameInput = document.querySelector('#input-name')
-    let nickname = nameInput.value
-    let mimaInput = document.querySelector('#input-mima')
-    let password = mimaInput.value
+    let nickname = document.querySelector('#input-name').value
+    let password = document.querySelector('#input-mima').value
     log(nickname, password)
-    // 储存账号密码
-    localStorage.user = JSON.stringify({
-        'nickname': nickname,
-        'password': password,
-    })
+    // 记住密码
+    if (nickname != "" && password != "") {
+        let storage = window.localStorage
+        log(storage)
+        let check = document.getElementById('isRemberPwdId')
+        if (document.getElementById('isRemberPwdId').checked) {
+            storage['nickname'] = nickname;
+            storage['password'] = password;
+            storage['isstorePwd'] = 'yes';
+        }
+        else {
+            storage['nickname'] = nickname;
+            storage['isstorePwd'] = 'no';
+        }
+    }
     let request = ({
         url: "https://leyuanxing.net/newapi/Wxbossboard/login",
         data: {

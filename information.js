@@ -90,6 +90,9 @@
   }
   scene()
 
+  // 进入information页面，未加载（登录失效），跳转到登录页面
+
+
   // 金额，人数显示（今日数据）
   let today_xinxi = function() {
       let request = ({
@@ -124,7 +127,8 @@
                   su.html = mp
                   $('.mp').html(su.html)
               } else {
-                  alert('加载失败')
+                  alert('加载失败,请重新登录')
+                  window.location = `index.html`
               }
           }
       })
