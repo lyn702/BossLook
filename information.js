@@ -90,8 +90,6 @@
   }
   scene()
 
-  // 进入information页面，未加载（登录失效），跳转到登录页面
-
 
   // 金额，人数显示（今日数据）
   let today_xinxi = function() {
@@ -126,7 +124,9 @@
                   // log(su.html , mp)
                   su.html = mp
                   $('.mp').html(su.html)
-              } else {
+              }
+              // 进入information页面，未加载（登录失效），跳转到登录页面
+              else {
                   alert('加载失败,请重新登录')
                   window.location = `index.html`
               }
@@ -179,9 +179,6 @@
                           log(id, sid)
                       }
                   }
-
-                  // let all = s.attributes
-                  // log(all)
               }
           }
       })

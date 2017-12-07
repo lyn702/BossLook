@@ -55,12 +55,22 @@
             color: #8590A6;
         }
         .inline {
+            width: 100%;
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             color: #333333;
         }
         .inline input {
             width: 20px;
             height: 20px;
+        }
+        .inline-one {
+            display: flex;
+        }
+        .inline-two {
+            display: flex;
+            margin-right: 5%;
         }
         #eye {
             position: absolute;
@@ -121,7 +131,14 @@
                 </div>
                 <div class="info-login-remember">
                     <div class="inline">
-                        <input id="isRemberPwdId" type="checkbox" checked name="" value="">记住密码
+                        <div class="inline-one">
+                            <input id="isRemberPwdId" type="checkbox" checked name="" value="">
+                            <div class="">记住密码</div>
+                        </div>
+                        <div class="inline-two">
+                            <input id="isAutoLoginId" type="checkbox" checked name="" value="">
+                            <div class="">自动登录</div>
+                        </div>
                     </div>
                 </div>
                 <div class="info-login-btn">
