@@ -27,12 +27,13 @@ $(document).ready(function () {
     let getNickname = storage['nickname'];
     let getPassword = storage['password'];
     let getIsstorePwd = storage['isstorePwd'];
-    let getIsautologin = storage["isautologin"];
-    log(getNickname, getPassword, getIsstorePwd)
+    let getIsautologin = storage['isAutoLogin'];
+    log(getNickname, getPassword, getIsstorePwd, getIsautologin)
     if (getIsstorePwd === 'yes') {
         if (getIsautologin === 'yes') {
             if ((("" != getNickname) || (null != getNickname)) && (("" != getPassword) || (null != getPassword))) {
-                
+                $("#input-name").val(getNickname);
+                $("#input-mima").val(getPassword);
             }
         }
     }
