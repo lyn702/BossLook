@@ -1,3 +1,5 @@
+let log = console.log.bind(console)
+const su = {}
   // 获取时间
   let time = function(z) {
       if (z === undefined) {
@@ -84,9 +86,9 @@
   let scene = function() {
       let lujing = location.search.slice(1)
       let scene_id = lujing.split('=')[1]
-      // log(scene_id)
+      log(scene_id)
       su['scene_id'] = scene_id
-      // log(su['scene_id'])
+      log(su['scene_id'])
   }
   scene()
 
@@ -105,8 +107,6 @@
           method: 'POST',
           success: function(res) {
               // var data = JSON.parse(res)
-              log(res)
-              // let su.mp.html = ''
               if (res.result === 0) {
                   let money = res.info.today_income
                   let people = res.info.today_visitors
@@ -124,9 +124,7 @@
                   // log(su.html , mp)
                   su.html = mp
                   $('.mp').html(su.html)
-              }
-              // 进入information页面，未加载（登录失效），跳转到登录页面
-              else {
+              } else {
                   alert('加载失败,请重新登录')
                   window.location = `index.html`
               }
@@ -203,7 +201,7 @@
               // let su.mp.html = ''
               if (res.result === 0) {
                   let money = res.info.month_income
-                  let people = res.info.total_visitors
+                  let people = res.info.month_visitors
                   log(money,people)
                   let mp = `
                   <div class="money">
