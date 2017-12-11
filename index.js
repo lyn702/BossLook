@@ -89,7 +89,7 @@ let getNickname = storage['nickname']
 let getPassword = storage['password']
 let getIsstorePwd = storage['isstorePwd']
 let getIsautologin = storage['isAutoLogin']
-// let getScene_id = storage['scene_id']
+// log(getNickname, getPassword, getIsstorePwd, getIsautologin)
 if ('yes' === getIsstorePwd) {
     if ('yes' === getIsautologin) {
         if ((("" != getNickname) || (null != getNickname)) && (("" != getPassword) || (null != getPassword))) {

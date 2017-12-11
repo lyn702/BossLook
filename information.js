@@ -106,19 +106,21 @@ const su = {}
           },
           method: 'POST',
           success: function(res) {
+              log(res)
               // var data = JSON.parse(res)
               if (res.result === 0) {
                   let money = res.info.today_income
                   let people = res.info.today_visitors
-                  // log(money,people)
+                  let order = res.info.today_orders
+                  log(money,order,people)
                   let mp = `
                   <div class="money">
                       <img src="image/u301.png" alt="">
                       <div class="money-number">￥${money}</div>
                   </div>
                   <div class="people">
-                      <img src="image/u305.png" alt="">
-                      <div class="people-number">${people}人</div>
+                      <img src="image/u306.png" alt="">
+                      <div class="people-number">${order}笔</div>
                   </div>
                   `
                   // log(su.html , mp)
@@ -202,15 +204,16 @@ const su = {}
               if (res.result === 0) {
                   let money = res.info.month_income
                   let people = res.info.month_visitors
-                  log(money,people)
+                  let order = res.info.month_orders
+                  log(money,order,people)
                   let mp = `
                   <div class="money">
                       <img src="image/u301.png" alt="">
                       <div class="money-number">￥${money}</div>
                   </div>
                   <div class="people">
-                      <img src="image/u305.png" alt="">
-                      <div class="people-number">${people}人</div>
+                      <img src="image/u306.png" alt="">
+                      <div class="people-number">${order}笔</div>
                   </div>
                   `
                   // log(su.html , mp)
