@@ -299,3 +299,10 @@ const su = {}
       month_xinxi()
       month_shouru()
   })
+
+  // 点击返回
+  $('.back').on('click', function() {
+      localStorage.removeItem('isAutoLogin')
+      localStorage.removeItem('password')
+      window.location = `index.html`
+  })
