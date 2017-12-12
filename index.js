@@ -23,7 +23,7 @@ $('#eye').on('click', function() {
 let login = function() {
     let nickname = document.querySelector('#input-name').value
     let password = document.querySelector('#input-mima').value
-    log(nickname, password)
+    // log(nickname, password)
     // 记住密码
     if (nickname != "" && password != "") {
         let storage = window.localStorage
@@ -47,8 +47,8 @@ let login = function() {
             storage['isstorePwd'] = 'yes'
             storage['isAutoLogin'] = 'yes'
         } else {
-            storage['nickname'] = nickname;
-            storage['isAutoLogin'] = 'no';
+            storage['nickname'] = nickname
+            storage['isAutoLogin'] = 'no'
         }
         let request = ({
             url: "https://leyuanxing.net/newapi/Wxbossboard/login",
@@ -89,12 +89,12 @@ let getNickname = storage['nickname']
 let getPassword = storage['password']
 let getIsstorePwd = storage['isstorePwd']
 let getIsautologin = storage['isAutoLogin']
-// log(getNickname, getPassword, getIsstorePwd, getIsautologin)
+log(getNickname, getPassword, getIsstorePwd, getIsautologin)
 if ('yes' === getIsstorePwd) {
     if ('yes' === getIsautologin) {
         if ((("" != getNickname) || (null != getNickname)) && (("" != getPassword) || (null != getPassword))) {
-            $("#input-name").val(getNickname);
-            $("#input-mima").val(getPassword);
+            $("#input-name").val(getNickname)
+            $("#input-mima").val(getPassword)
             // 加载(自动登录)
             $.ajax({
                 url: "https://leyuanxing.net/newapi/Wxbossboard/login",
