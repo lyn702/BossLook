@@ -26,6 +26,7 @@
             font-size: 2.8rem;
             padding: .5rem 0;
             color: #868686;
+            margin-left: 15%;
         }
         .today {
             /*font-size: 2rem;*/
@@ -157,18 +158,27 @@
         .xm {
             margin-top: 10px;
         }
+        .line {
+            display: flex;
+            /*justify-content: center;*/
+            align-items: center;
+        }
         .back {
+            width: 10%;
             margin: 1rem auto;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            padding-right: 5%;
         }
     </style>
     <body>
         <div class="all">
-            <div class="head">
-                <div class="today click">今日数据</div>
-                <div class="month">本月数据</div>
+            <div class="line">
+                <div class="head">
+                    <div class="today click">今日数据</div>
+                    <div class="month">本月数据</div>
+                </div>
+                <div class="back">退出</div>
             </div>
-            <div class="back">返回</div>
             <div class="notice">
                 <img src="image/u249.png" alt="">
                 <div class="data">这是将要通报的数据。</div>
@@ -189,7 +199,6 @@
         </div>
     </body>
     <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
-    <!-- <script src="https://bigc.cc/mer/js/bigsea.js"></script> -->
     <script src="information.js"></script>
 
 </html>

@@ -45,12 +45,17 @@
             padding-bottom: 5px;
             height: 3rem;
             color: #8590A6;
+            border-top: 1px dashed #9DA3A6;
+            border-bottom: 1px dashed #9DA3A6;
+        }
+        .info-login-box+.info-login-box {
+            border-top-style: none;
         }
         .info-login-remember {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            margin-left: 15%;
+            margin-left: 5%;
             height: 2.5rem;
             color: #8590A6;
         }
@@ -66,7 +71,6 @@
             height: 20px;
         }
         .inline-one {
-            /*visibility: hidden;*/
             display: none;
         }
         .inline-two {
@@ -74,30 +78,38 @@
             margin-right: 5%;
         }
         #eye {
-            position: absolute;
-            /*top: 35%;*/
-            right: 12%;
-            width: 20px;
-            height: 15px;
+            width: 23px;
+            height: 18px;
+        }
+        #nolook {
+            visibility: hidden;
+            width: 23px;
+            height: 18px;
         }
         #input-name {
-            font-size: 1.03rem;
+            font-size: 1.05rem;
         }
         #input-mima {
-            font-size: 1.03rem;
+            font-size: 1.05rem;
         }
         .info-login-box input {
             outline: 0;
             border-style: none;
             border-radius: 5px;
             padding: 0;
-            border-top: 1px solid #9DA3A6;
-            border-bottom: 1px solid #9DA3A6;
-            border-left: 1px solid #9DA3A6;
-            border-right: 1px solid #9DA3A6;
             background-color: transparent;
-            width: calc(100% - 3.75rem);
+            width: calc(100% - 5rem);
             height: 80%;
+        }
+        .info-login-box e{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: 2.25rem;
+            height: 100%;
+            font-size: 1.05rem;
+            color: #333333;
         }
         .info-login-btn .btn {
             text-align: center;
@@ -109,25 +121,18 @@
             background-color: #037DD8;
             border-color: #0771C1;
         }
-        .checkname {
-            font-size: 1.15rem;
-            color: #333333;
-        }
-        .password {
-            font-size: 1.15rem;
-            color: #333333;
-        }
     </style>
     <body>
         <div class="info">
             <div class="info-name">BOSS看板登陆</div>
             <div class="info-login">
                 <div class="info-login-box">
-                    <div class="checkname">账号</div>
+                    <e class="checkname">账号</e>
                     <input id='input-name' type="text" placeholder="请输入您的账号">
+                    <img id="nolook" src="image/yincang.png">
                 </div>
                 <div class="info-login-box">
-                    <div class="password">密码</div>
+                    <e class="password">密码</e>
             		<input id="input-mima" type="password" placeholder="请输入您的密码">
                     <img id="eye" src="image/yincang.png">
                 </div>
