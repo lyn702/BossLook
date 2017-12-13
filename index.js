@@ -3,6 +3,7 @@ let log = console.log.bind(console)
 // 密码显示和隐藏
 let demoImg = document.getElementById("eye");
 let demoInput = document.getElementById("input-mima");
+
 //隐藏text block，显示password block
 let hideShowPsw = function() {
     if (demoInput.type == "password") {
@@ -13,6 +14,7 @@ let hideShowPsw = function() {
         demoImg.src = "image/yincang.png";
     }
 }
+
 // 点击眼睛执行密码显示隐藏函数
 $('#eye').on('click', function() {
     hideShowPsw()
@@ -81,7 +83,6 @@ let login = function() {
         alert('用户名密码不能为空')
     }
 }
-
 
 //读取 localStage 本地存储，填充用户名密码;
 let storage = window.localStorage
