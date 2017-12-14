@@ -162,21 +162,34 @@ const su = {}
                       let id = info.channel_id
                       let sid = id % 3 + 1
                       // log(id, sid)
-                      let t = `
-                      <div class="fl" data-id="${id}">
-                          <div class="xz fl-${sid} fl-1-${sid}">
-                              <div class="time">${shijian}min</div>
-                              <div class="qian">￥${money}</div>
-                          </div>
-                          <div class="xm">${channel}</div>
-                      </div>`
-                      su.html = su.html + t
-                      // log(su.html)
-                      if (i === infos.length - 1) {
-                          $('.tongdao').html(su.html)
-                      }
-                      if (money === 0) {
-                          log(id, sid)
+                      if (money !== 0) {
+                          let t = `
+                          <div class="fl" data-id="${id}">
+                              <div class="xz fl-${sid} fl-1-${sid}">
+                                  <div class="time">${shijian}min</div>
+                                  <div class="qian">￥${money}</div>
+                              </div>
+                              <div class="xm">${channel}</div>
+                          </div>`
+                          su.html = su.html + t
+                          // log(su.html)
+                          if (i === infos.length - 1) {
+                              $('.tongdao').html(su.html)
+                          }
+                      } else {
+                          let t = `
+                          <div class="fl" data-id="${id}">
+                              <div class="xz fl-${sid} fl-1-${sid} bgno">
+                                  <div class="time">${shijian}min</div>
+                                  <div class="qian">￥${money}</div>
+                              </div>
+                              <div class="xm">${channel}</div>
+                          </div>`
+                          su.html = su.html + t
+                          // log(su.html)
+                          if (i === infos.length - 1) {
+                              $('.tongdao').html(su.html)
+                          }
                       }
                   }
               }
@@ -252,21 +265,34 @@ const su = {}
                       let id = info.channel_id
                       let sid = id % 3 + 1
                       // log(money,channel,id)
-                      let t = `
-                      <div class="fl" data-id="${id}">
-                          <div class="fl-${sid} fl-1-${sid}">
-                              <div class="time">${shijian}min</div>
-                              <div class="qian">￥${money}</div>
-                          </div>
-                          <div class="xm">${channel}</div>
-                      </div>`
-                      su.html = su.html + t
-                      // log(su.html)
-                      if (i === infos.length - 1) {
-                          $('.tongdao').html(su.html)
-                      }
-                      if (money === 0) {
-                          log(id, sid)
+                      if (money !== 0) {
+                          let t = `
+                          <div class="fl" data-id="${id}">
+                              <div class="xz fl-${sid} fl-1-${sid}">
+                                  <div class="time">${shijian}min</div>
+                                  <div class="qian">￥${money}</div>
+                              </div>
+                              <div class="xm">${channel}</div>
+                          </div>`
+                          su.html = su.html + t
+                          // log(su.html)
+                          if (i === infos.length - 1) {
+                              $('.tongdao').html(su.html)
+                          }
+                      } else {
+                          let t = `
+                          <div class="fl" data-id="${id}">
+                              <div class="xz fl-${sid} fl-1-${sid} bgno">
+                                  <div class="time">${shijian}min</div>
+                                  <div class="qian">￥${money}</div>
+                              </div>
+                              <div class="xm">${channel}</div>
+                          </div>`
+                          su.html = su.html + t
+                          // log(su.html)
+                          if (i === infos.length - 1) {
+                              $('.tongdao').html(su.html)
+                          }
                       }
                   }
               }

@@ -29,9 +29,9 @@ let login = function() {
     // 记住密码
     if (nickname != "" && password != "") {
         let storage = window.localStorage
-        log(storage)
+        // log(storage)
         let check1 = document.getElementById('isRemberPwdId')
-        log('check1', check1.checked)
+        // log('check1', check1.checked)
         if (check1.checked) {
             storage['nickname'] = nickname
             storage['password'] = password
@@ -42,7 +42,7 @@ let login = function() {
         }
         // 选择自动登录
         let check2 = document.getElementById('isAutoLoginId')
-        log('check2', check2.checked)
+        // log('check2', check2.checked)
         if (check2.checked) {
             storage['nickname'] = nickname
             storage['password'] = password
@@ -67,7 +67,7 @@ let login = function() {
                 log(res)
                 // 登录成功
                 if (res.result === 0) {
-                    log(storage)
+                    // log(storage)
                     let scene_id = res.user_info.scene_id
                     // log(scene_id)
                     window.location = `information.html?scene_id=${scene_id}`
@@ -90,7 +90,7 @@ let getNickname = storage['nickname']
 let getPassword = storage['password']
 let getIsstorePwd = storage['isstorePwd']
 let getIsautologin = storage['isAutoLogin']
-log(getNickname, getPassword, getIsstorePwd, getIsautologin)
+// log(getNickname, getPassword, getIsstorePwd, getIsautologin)
 if ('yes' === getIsstorePwd) {
     if ('yes' === getIsautologin) {
         if ((("" != getNickname) || (null != getNickname)) && (("" != getPassword) || (null != getPassword))) {
@@ -110,9 +110,9 @@ if ('yes' === getIsstorePwd) {
                 success: function(res) {
                     log(res)
                     let scene_id = res.user_info.scene_id
-                    log(scene_id)
+                    // log(scene_id)
                     if (res.result === 0) {
-                        window.location = `information.html?scene_id=${scene_id}`
+                        // window.location = `information.html?scene_id=${scene_id}`
                     } else {
                         alert('账号或密码错误')
                     }
@@ -128,9 +128,3 @@ if ('yes' === getIsstorePwd) {
         document.getElementById("isRemberPwdId").checked = true;
     }
 }
-
-
-// 点击登录按钮
-// $('.btn').on('click', function() {
-//     login()
-// })
